@@ -9,7 +9,7 @@ import org.springframework.web.client.HttpServerErrorException;
 import dailymotion.miner.service.DailymotionService;
 
 @RestController
-@RequestMapping("/apipath")
+@RequestMapping("/dailymotionminer")
 public class DailymotionController {
 
     @Autowired

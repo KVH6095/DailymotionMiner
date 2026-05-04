@@ -50,7 +50,7 @@ public class DailymotionService {
 
                 String captionsUrl = DAILYMOTION_API + "/video/" + video.getId() + "/subtitles?fields=id,url,language";
 
-                CaptionList captionList = restTemplate.getForObject(captionsUrl, CaptionList.class);
+                 CaptionList captionList = restTemplate.getForObject(captionsUrl, CaptionList.class);
 
                 if (captionList != null && captionList.getList() != null) {
                     video.setCaptions(captionList.getList());
