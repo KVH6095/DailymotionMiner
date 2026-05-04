@@ -9,21 +9,25 @@ import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "id",
-    "title",
-    "description",
-    "created_time"
+        "id",
+        "name",
+        "description",
+        "releaseTime",
+        "comments",
+        "captions",
+        "user"
 })
 @Generated("jsonschema2pojo")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Video {
 
     @JsonProperty("id")
     private String id;
-    @JsonProperty("title")
+    @JsonAlias("title")
     private String name;
     @JsonProperty("description")
     private String description;
-    @JsonProperty("created_time")
+    @JsonAlias("created_time")
     @JsonDeserialize(using = com.fasterxml.jackson.databind.deser.std.StringDeserializer.class)
     private String releaseTime;
     @JsonProperty(value = "owner", access = JsonProperty.Access.WRITE_ONLY)
@@ -40,45 +44,35 @@ public class Video {
 
 
 
-    @JsonProperty("id")
+
     public String getId() {
         return id;
     }
 
-    @JsonProperty("id")
+
     public void setId(String id) {
         this.id = id;
     }
 
-    @JsonProperty("title")
-    public String getName() {
-        return name;
-    }
+    @JsonProperty("name")
+    public String getName() { return name; }
 
-    @JsonProperty("title")
-    public void setName(String name) {
-        this.name = name;
-    }
+    public void setName(String name) { this.name = name; }
 
-    @JsonProperty("description")
+
     public String getDescription() {
         return description;
     }
 
-    @JsonProperty("description")
+
     public void setDescription(String description) {
         this.description = description;
     }
 
-    @JsonProperty("created_time")
-    public String getReleaseTime() {
-        return releaseTime;
-    }
+    @JsonProperty("releaseTime")
+    public String getReleaseTime() { return releaseTime; }
 
-    @JsonProperty("created_time")
-    public void setReleaseTime(String releaseTime) {
-        this.releaseTime = releaseTime;
-    }
+    public void setReleaseTime(String releaseTime) { this.releaseTime = releaseTime; }
 
 
 
@@ -113,6 +107,7 @@ public class Video {
 
     public void setUser(User user) { this.user = user; }
 
+    @JsonProperty("comments")
     public List<Comment> getCommentList() { return commentList; }
 
     public void setCommentList(List<Comment> commentList) { this.commentList = commentList; }

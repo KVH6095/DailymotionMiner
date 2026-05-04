@@ -24,7 +24,7 @@ public class DailymotionController {
 
         try {
             Channel channel = dailymotionService.getAndSendChannel(id, maxVideos, maxPages);
-            return ResponseEntity.ok(channel); // 200
+            return ResponseEntity.status(201).body(channel); // 201 Created
         } catch (HttpClientErrorException.NotFound e) {
             return ResponseEntity.notFound().build(); // 404
         } catch (HttpClientErrorException.BadRequest e) {

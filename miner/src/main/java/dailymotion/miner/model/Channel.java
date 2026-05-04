@@ -1,10 +1,7 @@
 
 package dailymotion.miner.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 
@@ -13,12 +10,14 @@ import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "id",
-    "name",
-    "description",
-    "created_time"
+        "id",
+        "name",
+        "description",
+        "createdTime",
+        "videos"
 })
 @Generated("jsonschema2pojo")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Channel {
 
     @JsonProperty("id")
@@ -27,7 +26,7 @@ public class Channel {
     private String name;
     @JsonProperty("description")
     private String description;
-    @JsonProperty("created_time")
+    @JsonAlias("created_time")
     @JsonDeserialize(using = com.fasterxml.jackson.databind.deser.std.StringDeserializer.class)
     private String createdTime;
 
@@ -71,15 +70,10 @@ public class Channel {
         this.description = description;
     }
 
-    @JsonProperty("created_time")
-    public String getCreatedTime() {
-        return createdTime;
-    }
+    @JsonProperty("createdTime")
+    public String getCreatedTime() { return createdTime; }
 
-    @JsonProperty("created_time")
-    public void setCreatedTime(String createdTime) {
-        this.createdTime = createdTime;
-    }
+    public void setCreatedTime(String createdTime) { this.createdTime = createdTime; }
 
 
 
