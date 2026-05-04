@@ -1,0 +1,144 @@
+{
+	"info": {
+		"_postman_id": "ab12c34d-5678-90ef-gh12-34567890ijkl",
+		"name": "DailymotionMiner System Tests",
+		"description": "Pruebas de sistema para validar el funcionamiento del API REST de DailymotionMiner.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. GET Preview Channel (news)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response has a valid id\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.id).to.eql(\"news\");",
+							"});",
+							"",
+							"pm.test(\"Response has videos array\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.videos).to.be.an(\"array\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/dailymotionminer/news?maxVideos=5&maxPages=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"dailymotionminer",
+						"news"
+					],
+					"query": [
+						{
+							"key": "maxVideos",
+							"value": "5"
+						},
+						{
+							"key": "maxPages",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2. POST Mine and Send Channel (news)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"Response has a valid id\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.id).to.eql(\"news\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/dailymotionminer/news?maxVideos=5&maxPages=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"dailymotionminer",
+						"news"
+					],
+					"query": [
+						{
+							"key": "maxVideos",
+							"value": "5"
+						},
+						{
+							"key": "maxPages",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3. GET Channel Not Found",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/dailymotionminer/este-canal-no-existe-123456789",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"dailymotionminer",
+						"este-canal-no-existe-123456789"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
