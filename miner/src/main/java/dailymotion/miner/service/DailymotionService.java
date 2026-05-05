@@ -66,7 +66,7 @@ public class DailymotionService {
                         Comment comment = new Comment();
                         comment.setId(video.getId() + "_tag_" + i);
                         comment.setText(video.getComments().get(i));
-                        comment.setCreatedOn(null);
+                        comment.setCreatedOn(video.getReleaseTime());
                         commentList.add(comment);
                     }
                 }
@@ -84,11 +84,13 @@ public class DailymotionService {
     public Channel getAndSendChannel(String id, int maxVideos, int maxPages) {
         Channel channel = getChannel(id, maxVideos, maxPages);
 
-
-
-        // Enviamos el canal a VideoMiner
-        String videoMinerUrl = VIDEOMINER_API + "/videominer/channels";
-        restTemplate.postForObject(videoMinerUrl, channel, Channel.class);
+        try {
+            String videoMinerUrl = VIDEOMINER_API + "/videominer/channels";
+            restTemplate.postForEntity(videoMinerUrl, channel, Channel.class);
+        } catch (Exception e) {
+            System.out.println("Error al enviar a VideoMiner: " + e.getMessage());
+            throw e;
+        }
 
         return channel;
     }

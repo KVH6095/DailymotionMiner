@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 @JsonPropertyOrder({
         "id",
         "text",
-        "created_on"
+        "createdOn"
 })
 @Generated("jsonschema2pojo")
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -24,7 +24,7 @@ public class Comment {
     private String text;
 
     // No hay fecha en los tags, la dejo como null
-    @JsonProperty("created_on")
+    @JsonProperty("createdOn")
     private String createdOn;
 
     @JsonProperty("id")
@@ -39,10 +39,10 @@ public class Comment {
     @JsonProperty("text")
     public void setText(String text) { this.text = text; }
 
-    @JsonProperty("created_on")
+    @JsonProperty("createdOn")
     public String getCreatedOn() { return createdOn; }
 
-    @JsonProperty("created_on")
+    @JsonProperty("createdOn")
     public void setCreatedOn(String createdOn) { this.createdOn = createdOn; }
 
     @Override
