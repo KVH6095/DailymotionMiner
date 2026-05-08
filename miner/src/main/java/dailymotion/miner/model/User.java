@@ -15,11 +15,8 @@ import com.fasterxml.jackson.annotation.*;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class User {
 
-    @JsonProperty(value = "id", access = JsonProperty.Access.WRITE_ONLY)
-    private String dailymotionId;
-
-    @JsonInclude(JsonInclude.Include.ALWAYS)
-    private Long id = null;
+    @JsonProperty("id")
+    private String id;
 
     @JsonAlias("screenname")
     private String name;
@@ -45,11 +42,8 @@ public class User {
 
     public void setPictureLink(String pictureLink) { this.pictureLink = pictureLink; }
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-
-    public String getDailymotionId() { return dailymotionId; }
-    public void setDailymotionId(String dailymotionId) { this.dailymotionId = dailymotionId; }
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
 
     @Override
     public String toString() {

@@ -1,0 +1,10 @@
+dailymotion\miner\model\Caption.class
+dailymotion\miner\model\User.class
+dailymotion\miner\model\Video.class
+dailymotion\miner\service\CaptionList.class
+dailymotion\miner\controller\DailymotionController.class
+dailymotion\miner\model\Comment.class
+dailymotion\miner\MinerApplication.class
+dailymotion\miner\model\Channel.class
+dailymotion\miner\service\DailymotionService.class
+dailymotion\miner\service\VideoList.class

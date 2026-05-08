@@ -43,7 +43,7 @@ public class DailymotionServiceUnitTest {
         fakeChannel.setName("Test Channel");
 
         fakeUser = new User();
-        fakeUser.setId(1L);
+        fakeUser.setId("1");
         fakeUser.setName("Test User");
 
         fakeVideo = new Video();
@@ -94,7 +94,7 @@ public class DailymotionServiceUnitTest {
 
         User author = result.getVideos().get(0).getUser();
         assertNotNull(author);
-        assertEquals(1L, author.getId());
+        assertEquals("1", author.getId());
     }
 
     @Test

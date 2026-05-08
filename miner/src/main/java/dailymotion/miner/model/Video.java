@@ -30,10 +30,6 @@ public class Video {
     @JsonAlias("created_time")
     @JsonDeserialize(using = com.fasterxml.jackson.databind.deser.std.StringDeserializer.class)
     private String releaseTime;
-    @JsonProperty("views_total")
-    private Integer viewCount;
-    @JsonProperty("likes_total")
-    private Integer likeCount;
     @JsonProperty(value = "owner", access = JsonProperty.Access.WRITE_ONLY)
     private String userId;
     @JsonProperty(value = "tags", access = JsonProperty.Access.WRITE_ONLY)
@@ -78,17 +74,6 @@ public class Video {
 
     public void setReleaseTime(String releaseTime) { this.releaseTime = releaseTime; }
 
-    @JsonProperty("views_total")
-    public Integer getViewCount() { return viewCount; }
-
-    @JsonProperty("views_total")
-    public void setViewCount(Integer viewCount) { this.viewCount = viewCount; }
-
-    @JsonProperty("likes_total")
-    public Integer getLikeCount() { return likeCount; }
-
-    @JsonProperty("likes_total")
-    public void setLikeCount(Integer likeCount) { this.likeCount = likeCount; }
 
     public String getUserId() {
         return userId;

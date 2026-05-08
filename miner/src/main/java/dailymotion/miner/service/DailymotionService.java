@@ -6,6 +6,9 @@ import dailymotion.miner.model.User;
 import dailymotion.miner.model.Video;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
@@ -23,7 +26,7 @@ public class DailymotionService {
 
     public Channel getChannel(String id, int maxVideos, int maxPages) {
 
-        String channelUrl = DAILYMOTION_API + "/channel/" + id + "?fields=id,name,description,created_time,fans_count";
+        String channelUrl = DAILYMOTION_API + "/channel/" + id + "?fields=id,name,description,created_time";
 
         Channel channel = restTemplate.getForObject(channelUrl, Channel.class);
 
@@ -32,7 +35,7 @@ public class DailymotionService {
             throw new RuntimeException("Canal no encontrado: " + id);
         }
 
-        String videosUrl = DAILYMOTION_API + "/channel/" + id + "/videos?fields=id,title,description,created_time,owner,tags,views_total,likes_total&limit=" + maxVideos;
+        String videosUrl = DAILYMOTION_API + "/channel/" + id + "/videos?fields=id,title,description,created_time,owner,tags&limit=" + maxVideos;
 
         VideoList videoList = restTemplate.getForObject(videosUrl, VideoList.class);
 
@@ -74,7 +77,7 @@ public class DailymotionService {
                 if (video.getComments() != null) {
                     for (int i = 0; i < video.getComments().size(); i++) {
                         Comment comment = new Comment();
-                        comment.setId(UUID.randomUUID().toString());
+                        comment.setId(video.getId() + "_tag_" + i);
                         comment.setText(video.getComments().get(i));
                         comment.setCreatedOn(video.getReleaseTime());
                         commentList.add(comment);
@@ -96,7 +99,10 @@ public class DailymotionService {
 
         try {
             String videoMinerUrl = VIDEOMINER_API + "/videominer/channels";
-            restTemplate.postForEntity(videoMinerUrl, channel, Channel.class);
+            HttpHeaders headers = new HttpHeaders();
+            headers.set("Authorization", "Bearer MiClaveSecreta123");
+            HttpEntity<Channel> request = new HttpEntity<>(channel, headers);
+            restTemplate.postForEntity(videoMinerUrl, request, Channel.class);
         } catch (Exception e) {
             System.out.println("Error al enviar a VideoMiner: " + e.getMessage());
             throw e;
