@@ -55,6 +55,15 @@ public class DailymotionService {
 
                 if (captionList != null && captionList.getList() != null) {
                     video.setCaptions(captionList.getList());
+                    if (captionList != null && captionList.getList() != null) {
+                        List<dailymotion.miner.model.Caption> captions = captionList.getList();
+                        for (int i = 0; i < captions.size(); i++) {
+                            captions.get(i).setId(video.getId() + "_cap_" + i);  // <-- añade esto
+                        }
+                        video.setCaptions(captions);
+                    } else {
+                        video.setCaptions(new ArrayList<>());
+                    }
                 } else {
                     video.setCaptions(new ArrayList<>());
                 }

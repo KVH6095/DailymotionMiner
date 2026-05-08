@@ -17,8 +17,6 @@ import javax.annotation.processing.Generated;
 @Generated("jsonschema2pojo")
 public class Caption {
 
-    @JsonProperty(value = "id", access = JsonProperty.Access.WRITE_ONLY)
-    private String dailymotionId;
 
     @JsonInclude(JsonInclude.Include.ALWAYS)
     private String id = null;
@@ -31,9 +29,6 @@ public class Caption {
 
     public String getId() { return id; }
     public void setId(String id) { this.id = id; }
-
-    public String getDailymotionId() { return dailymotionId; }
-    public void setDailymotionId(String dailymotionId) { this.dailymotionId = dailymotionId; }
 
     @JsonProperty("url")
     public String getLink() { return link; }
