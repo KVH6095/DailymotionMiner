@@ -43,7 +43,7 @@ public class DailymotionServiceUnitTest {
         fakeChannel.setName("Test Channel");
 
         fakeUser = new User();
-        fakeUser.setId("user1");
+        fakeUser.setId(1L);
         fakeUser.setName("Test User");
 
         fakeVideo = new Video();
