@@ -17,8 +17,11 @@ import javax.annotation.processing.Generated;
 @Generated("jsonschema2pojo")
 public class Caption {
 
-    @JsonProperty("id")
-    private String id;
+    @JsonProperty(value = "id", access = JsonProperty.Access.WRITE_ONLY)
+    private String dailymotionId;
+
+    @JsonInclude(JsonInclude.Include.ALWAYS)
+    private String id = null;
 
     @JsonProperty("url")
     private String link;
@@ -26,11 +29,11 @@ public class Caption {
     @JsonProperty("language")
     private String language;
 
-    @JsonProperty("id")
     public String getId() { return id; }
-
-    @JsonProperty("id")
     public void setId(String id) { this.id = id; }
+
+    public String getDailymotionId() { return dailymotionId; }
+    public void setDailymotionId(String dailymotionId) { this.dailymotionId = dailymotionId; }
 
     @JsonProperty("url")
     public String getLink() { return link; }
