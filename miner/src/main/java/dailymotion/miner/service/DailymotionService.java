@@ -22,7 +22,7 @@ public class DailymotionService {
 
     public Channel getChannel(String id, int maxVideos, int maxPages) {
 
-        String channelUrl = DAILYMOTION_API + "/channel/" + id + "?fields=id,name,description,created_time";
+        String channelUrl = DAILYMOTION_API + "/channel/" + id + "?fields=id,name,description,created_time,fans_count";
 
         Channel channel = restTemplate.getForObject(channelUrl, Channel.class);
 
@@ -31,7 +31,7 @@ public class DailymotionService {
             throw new RuntimeException("Canal no encontrado: " + id);
         }
 
-        String videosUrl = DAILYMOTION_API + "/channel/" + id + "/videos?fields=id,title,description,created_time,owner,tags&limit=" + maxVideos;
+        String videosUrl = DAILYMOTION_API + "/channel/" + id + "/videos?fields=id,title,description,created_time,owner,tags,views_total,likes_total&limit=" + maxVideos;
 
         VideoList videoList = restTemplate.getForObject(videosUrl, VideoList.class);
 

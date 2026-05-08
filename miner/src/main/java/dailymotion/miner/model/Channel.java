@@ -29,6 +29,8 @@ public class Channel {
     @JsonAlias("created_time")
     @JsonDeserialize(using = com.fasterxml.jackson.databind.deser.std.StringDeserializer.class)
     private String createdTime;
+    @JsonProperty("fans_count")
+    private Integer subscriberCount;
 
     private List<Video> videos;
 
@@ -75,6 +77,11 @@ public class Channel {
 
     public void setCreatedTime(String createdTime) { this.createdTime = createdTime; }
 
+    @JsonProperty("fans_count")
+    public Integer getSubscriberCount() { return subscriberCount; }
+
+    @JsonProperty("fans_count")
+    public void setSubscriberCount(Integer subscriberCount) { this.subscriberCount = subscriberCount; }
 
 
     @Override
