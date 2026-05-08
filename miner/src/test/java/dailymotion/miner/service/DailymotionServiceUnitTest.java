@@ -94,7 +94,7 @@ public class DailymotionServiceUnitTest {
 
         User author = result.getVideos().get(0).getUser();
         assertNotNull(author);
-        assertEquals("user1", author.getId());
+        assertEquals(1L, author.getId());
     }
 
     @Test
@@ -113,9 +113,9 @@ public class DailymotionServiceUnitTest {
         List<Comment> comments = result.getVideos().get(0).getCommentList();
         assertNotNull(comments);
         assertEquals(2, comments.size());
-        assertEquals("vid1_tag_0", comments.get(0).getId());
+        assertNotNull(comments.get(0).getId());
         assertEquals("tag1", comments.get(0).getText());
-        assertEquals("vid1_tag_1", comments.get(1).getId());
+        assertNotNull(comments.get(1).getId());
         assertEquals("tag2", comments.get(1).getText());
     }
 

@@ -10,6 +10,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class DailymotionService {
@@ -64,7 +65,7 @@ public class DailymotionService {
                 if (video.getComments() != null) {
                     for (int i = 0; i < video.getComments().size(); i++) {
                         Comment comment = new Comment();
-                        comment.setId(video.getId() + "_tag_" + i);
+                        comment.setId(UUID.randomUUID().toString());
                         comment.setText(video.getComments().get(i));
                         comment.setCreatedOn(video.getReleaseTime());
                         commentList.add(comment);
